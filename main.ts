@@ -2,6 +2,7 @@ import{readdirSync as R,readFileSync as F,mkdirSync as M,writeFileSync as W}from
 let E=process.env,I=E.MAKEFUN_INPUT_DIR||'/input',O=E.MAKEFUN_OUTPUT_DIR||'/output'
 for(let d of R(I)){let p=F(I+'/'+d+'/program.bin'),u=F(I+'/'+d+'/input.bin'),S=new Int32Array(256),Y=[],C=[],o=Buffer.alloc(65536),s=0,g=s,t=s,j=s,l=s,e=s,n=p.length,k=O+'/'+d
 for(;;){if(++t>1e6|g<0|g>=n){e=t>1e6?10:9;break}
+// Packed opcode table: each char (code minus 34) packs operand length in v>>4, stack operands in v>>2&3, net push in v&3.
 let v=`"3c&(,-1        +++++++'+++'+++ +++             BFFB"           '*              &&#&`.charCodeAt(p[g])-34,m=v>>4,q=v>>2&3,w=v&3
 e=!(v>=0)?5:g+m>=n?9:0;if(e)break
 let x=g+1+m,z=p[g]
